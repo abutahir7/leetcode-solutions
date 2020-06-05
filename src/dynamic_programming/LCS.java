@@ -39,43 +39,22 @@ public class LCS {
     public int lcsDP(String x, String y){
         int m = x.length();
         int n = y.length();
-//        int[][] dp = new int[m+1][n+1];
+        int[][] dp = new int[m+1][n+1];
 //        System.out.println("ROW Len "+dp.length);
 //        System.out.println("COL Len "+dp[0].length);
-//        for (int i=0; i < m+1; i++) {
-//            for (int j=0; j <n+1; j++){
-//                if (i == 0 || j == 0) {
-//                    dp[i][j] = 0;
-//                }
-//                else if (x.charAt(i-1) == y.charAt(j-1)) {
-//                    dp[i][j] = 1 + dp[i - 1][j - 1];
-//                    printDP(dp, m, n);
-//                }
-//                else {
-//                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
-//                }
-//            }
-//        }
-        int[][] dp = new int[m][n];
-        for (int i=0; i< m; i++) {
-            for (int j =0; j< n; j++) {
-                if (x.charAt(i) == y.charAt(j)){
-                    if (i == 0 || j == 0) {
-                        dp[i][j] = 1;
-                    }
-                    else {
-                        dp[i][j] = 1 + dp[i -1][j-1];
-                    }
-                }else {
-                    if (i == 0 || j == 0)
-                        dp[i][j] =0;
-                    else
-                        dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+        for (int i=0; i < m+1; i++) {
+            for (int j=0; j <n+1; j++){
+                if (i == 0 || j == 0) {
+                    dp[i][j] = 0;
+                }
+                else if (x.charAt(i-1) == y.charAt(j-1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                }
+                else {
+                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
                 }
             }
-
         }
-        printDP(dp, m, n);
-        return dp[m-1][n-1];
+        return dp[m][n];
     }
 }
